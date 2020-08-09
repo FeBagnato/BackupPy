@@ -11,7 +11,7 @@ def backupStart(pasta):
          print('')
       else:
          os.system("cp -rf {} Backup\ {}".format(iten.replace(' ', "\ "),pasta))
-         print("Copiando {}\r".format(iten.replace(' ','\ ')),end='')
+         print("Copiando {}".format(iten.replace(' ','\ ')))
    os.system('notify-send -i gtk-dialog-warning -u normal "Backup" "Digite a sua senha"')
    os.system("7z a -p Backup\ {}.7z Backup\ {}".format(pasta,pasta))
    os.system("tar -cvf Backup\ {}.7z.tar Backup\ {}.7z".format(pasta,pasta))
@@ -20,16 +20,14 @@ def backupStart(pasta):
    os.system("rm Backup\ {}.7z".format(pasta))
 
 
-#backupStart("Documentos")
+backupStart("Documentos")
 
-#backupStart("Downloads")
+backupStart("Downloads")
 
-#backupStart("Desktop")
+backupStart("Desktop")
 
 backupStart("Imagens")
 
-#backupStart("Música")
+backupStart("Música")
 
-#backupStart("Vídeos")
-
-print("ATENÇÃO: não esqueça de fazer backup da home e Downloads")
+backupStart("Vídeos")
