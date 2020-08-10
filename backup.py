@@ -1,4 +1,5 @@
 import os
+from shutil import rmtree
 
 dirHome = str(os.environ['HOME'])
 
@@ -11,13 +12,14 @@ def backupStart(pasta):
          print('')
       else:
          os.system("cp -rf {} Backup\ {}".format(iten.replace(' ', "\ "),pasta))
-         print("Copiando {}".format(iten.replace(' ','\ ')))
+         print("\033[97mCopiando \033[32m{}".format(iten.replace(' ','\ ')))
+   print('\033[97m')
    os.system('notify-send -i gtk-dialog-warning -u normal "Backup" "Digite a sua senha"')
    os.system("7z a -p Backup\ {}.7z Backup\ {}".format(pasta,pasta))
    os.system("tar -cvf Backup\ {}.7z.tar Backup\ {}.7z".format(pasta,pasta))
 
-   os.system("rm -dr Backup\ {}".format(pasta))
-   os.system("rm Backup\ {}.7z".format(pasta))
+   rmtree("Backup {}".format(pasta))
+   os.remove("Backup {}.7z".format(pasta))
 
 
 backupStart("Documentos")
