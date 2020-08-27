@@ -2,6 +2,7 @@ import os
 from shutil import rmtree
 
 dirHome = str(os.environ['HOME'])
+varError = 1
 
 def backupStart(pasta):
    os.chdir("{}/{}/".format(dirHome,pasta))
@@ -15,7 +16,12 @@ def backupStart(pasta):
          print("\033[97mCopiando \033[32m{}".format(iten.replace(' ','\ ')))
    print('\033[97m')
    os.system('notify-send -i gtk-dialog-warning -u normal "Backup" "Digite a sua senha"')
-   os.system("7z a -p Backup\ {}.7z Backup\ {}".format(pasta,pasta))
+   global varError
+   while(varError != 0):
+       varError = os.system("7z a -p Backup\ {}.7z Backup\ {}".format(pasta,pasta))
+       if(varError != 0):
+           print("\033[0;31mA senha digitada esta incorreta!")
+           print("Tente novamente\033[97m")
    os.system("tar -cvf Backup\ {}.7z.tar Backup\ {}.7z".format(pasta,pasta))
 
    rmtree("Backup {}".format(pasta))
