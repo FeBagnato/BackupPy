@@ -1,5 +1,6 @@
 import os
 import py7zr
+from getpass import getpass
 from shutil import rmtree
 
 dirHome = str(os.environ['HOME'])
@@ -19,9 +20,9 @@ def backupStart(pasta):
     os.system('notify-send -i gtk-dialog-warning -u normal "Backup" "Digite a sua senha"')
 
     while(passError):
-        senha = str(input("Digite a senha: "))
+        senha = getpass("Digite a senha: ")
 
-        if(senha == str(input("Digite a senha novamente: "))):
+        if(senha == getpass("Digite a senha novamente: ")):
             with py7zr.SevenZipFile("Backup {}.7z".format(pasta), 'w', password=senha) as backup:
                 backup.writeall("Backup {}/".format(pasta))
             passError = False
