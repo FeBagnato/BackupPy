@@ -14,8 +14,7 @@ def backupStart(pasta):
         if iten.replace(' ', "\ ") == f"Backup\ {pasta}":
             print('')
         else:
-            nomeIten = iten.replace(' ', "\ ")
-            os.system(f"cp -rf {nomeIten} Backup\ {pasta}")
+            os.system(f"cp -rf '{iten}' Backup\ {pasta}")
             print(f"\033[97mCopiando \033[32m{iten}")
     print('\033[97m')
 
