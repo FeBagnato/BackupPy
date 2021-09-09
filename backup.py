@@ -7,20 +7,21 @@ dirHome = str(os.environ['HOME'])
 
 
 def backupStart(pasta):
-    os.chdir("{}/{}/".format(dirHome, pasta))
-    os.mkdir("./Backup {}".format(pasta))
-    print("Copiando os itens de {}".format(pasta))
+    os.chdir(f"{dirHome}/{pasta}/")
+    os.mkdir(f"./Backup {pasta}")
+    print(f"Copiando os itens de {pasta}")
     for iten in os.listdir():
-        if iten.replace(' ', "\ ") == "Backup\ {}".format(pasta):
+        if iten.replace(' ', "\ ") == f"Backup\ {pasta}":
             print('')
         else:
-            os.system("cp -rf {} Backup\ {}".format(iten.replace(' ', "\ "),pasta))
-            print("\033[97mCopiando \033[32m{}".format(iten.replace(' ', '\ ')))
+            nomeIten = iten.replace(' ', "\ ")
+            os.system(f"cp -rf {nomeIten} Backup\ {pasta}")
+            print(f"\033[97mCopiando \033[32m{iten}")
     print('\033[97m')
 
-    with py7zr.SevenZipFile("Backup {}.7z".format(pasta), 'w', password=senha) as backup:
-        backup.writeall("Backup {}/".format(pasta))
-    rmtree("Backup {}".format(pasta))
+    with py7zr.SevenZipFile(f"Backup {pasta}.7z", 'w', password=senha) as backup:
+        backup.writeall(f"Backup {pasta}/")
+    rmtree(f"Backup {pasta}")
 
 
 passError = True
