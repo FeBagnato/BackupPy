@@ -5,6 +5,7 @@ from shutil import rmtree
 
 class BackupThread(threading.Thread):
     def __init__(self, pasta, senha):
+        threading.Thread.__init__(self)
         self.pasta = pasta
         self.senha = senha
         self.dirHome = str(os.environ['HOME'])
