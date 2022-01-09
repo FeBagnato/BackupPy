@@ -1,6 +1,7 @@
 import threading
 import os
 import py7zr
+from IgnoreList import IgnoreList
 from shutil import rmtree
 
 class BackupThread(threading.Thread):
@@ -12,9 +13,12 @@ class BackupThread(threading.Thread):
 
     def run(self):
         os.mkdir(f"{self.dirHome}/{self.pasta}/Backup {self.pasta}")
+        ignoreItens = IgnoreList()
         print(f"Copiando os itens de {self.pasta}")
         for iten in os.listdir(f"{self.dirHome}/{self.pasta}"):
             if iten.replace(' ', "\ ") == f"Backup\ {self.pasta}":
+                pass
+            elif iten in ignoreItens.getItens():
                 pass
             else:
                 os.system(f"cp -rf '{self.dirHome}/{self.pasta}/{iten}' "
