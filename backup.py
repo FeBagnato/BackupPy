@@ -1,6 +1,12 @@
 import thread
 from getpass import getpass
 
+print("""\033[0;33mCaso tenha algum arquivo ou pasta que você não queira adicionar ao backup, coloque o 
+caminho no "ignoreList.conf" em "config/ignoreList.conf\n""")
+
+print("""Exemplo do conteúdo de ignoreList.conf:
+/home/usuario/Downloads/ArquivoIgnorado\033[0;37m\n\n""")
+
 passError = True
 while(passError):
     senha = getpass("Digite a senha: ")
