@@ -24,8 +24,12 @@ while(passError):
         ignore.init()
         backupDocumentos.start()
         backupDownload.start()
+        backupDownload.join()
+
         backupDesktop.start()
         backupImagens.start()
+        backupImagens.join()
+
         backupMusica.start()
         backupVideos.start()
 

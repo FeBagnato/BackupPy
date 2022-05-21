@@ -3,6 +3,8 @@ import os
 import py7zr
 from shutil import rmtree
 
+barrier = threading.Barrier(2)
+
 class BackupThread(threading.Thread):
     def __init__(self, pasta, senha):
         threading.Thread.__init__(self)
@@ -28,3 +30,4 @@ class BackupThread(threading.Thread):
             backup.writeall(f"{self.dirHome}/{self.pasta}/Backup {self.pasta}/",
                             f"Backup {self.pasta}")
         rmtree(f"{self.dirHome}/{self.pasta}/Backup {self.pasta}")
+        barrier.wait()
