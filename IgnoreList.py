@@ -1,17 +1,17 @@
+from os import replace
+
 class IgnoreList:
     def __init__(self):
         self.__ignoreItens = list("")
         self.__setItens()
 
-    def isItenInIgnoreList(self, iten, pasta):
-        itenInList = bool(False)
-        for count in range(len(self.__getItens())):
-            if pasta in self.__getItens()[count] and self.__getItens()[count]\
-                    .endswith(f"/{iten}"):
-                        itenInList = True
-                        break
+    def init(self):
+        for itens in self.__getItens():
+            replace(itens, f"ignored files/{itens.replace('/', '_')}")
 
-        return itenInList
+    def end(self):
+        for itens in self.__getItens():
+            replace(f"ignored files/{itens.replace('/', '_')}", itens)
 
     def __setItens(self):
         arquivoItens = open("config/ignoreList.conf", 'r')
