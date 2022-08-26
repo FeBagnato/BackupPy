@@ -18,6 +18,8 @@ class BackupThread(threading.Thread):
         for iten in os.listdir(f"{self.dirHome}/{self.pasta}"):
             if iten.replace(' ', "\ ") == f"Backup\ {self.pasta}":
                 pass
+            elif iten == "BackupPy":
+                pass
             else:
                 os.system(f"cp -rf '{self.dirHome}/{self.pasta}/{iten}' "
                           f"{self.dirHome}/{self.pasta}/Backup\ {self.pasta}")
