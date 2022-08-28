@@ -6,6 +6,7 @@ from multiprocessing import cpu_count
 
 barrier = threading.Barrier(int(cpu_count() / 2))
 
+
 class BackupThread(threading.Thread):
     def __init__(self, pasta, senha):
         threading.Thread.__init__(self)
