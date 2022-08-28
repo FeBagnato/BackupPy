@@ -2,8 +2,9 @@ import threading
 import os
 import py7zr
 from shutil import rmtree
+from multiprocessing import cpu_count
 
-barrier = threading.Barrier(2)
+barrier = threading.Barrier(int(cpu_count() / 2))
 
 class BackupThread(threading.Thread):
     def __init__(self, pasta, senha):
