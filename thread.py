@@ -17,13 +17,13 @@ class BackupThread(threading.Thread):
         os.mkdir(f"{self.dirHome}/{self.pasta}/Backup {self.pasta}")
         print(f"Copiando os itens de {self.pasta}")
         for iten in os.listdir(f"{self.dirHome}/{self.pasta}"):
-            if iten.replace(' ', "\ ") == f"Backup\ {self.pasta}":
+            if iten.replace(' ', "\\ ") == f"Backup\\ {self.pasta}":
                 pass
             elif iten == "BackupPy":
                 pass
             else:
                 os.system(f"cp -rf '{self.dirHome}/{self.pasta}/{iten}' "
-                          f"{self.dirHome}/{self.pasta}/Backup\ {self.pasta}")
+                          f"{self.dirHome}/{self.pasta}/Backup\\ {self.pasta}")
 
                 print(f"\033[97mCopiando \033[32m{iten}")
         print('\033[97m')
